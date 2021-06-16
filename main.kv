@@ -1,0 +1,63 @@
+#:include kv/homescreen.kv
+#:include kv/loginscreen.kv
+#:include kv/registerscreen.kv
+#:include kv/settingscreen.kv
+
+Screen:
+    MDNavigationLayout:
+        ScreenManager:
+            id: screen_manager
+            size_hint: 1,1
+            pos_hint: {"top":1, "left":1}
+            LoginScreen:
+                name: "scr_login"
+                id: scr_login
+            RegisterScreen:
+                name: "scr_register"
+                id: scr_register
+            HomeScreen:
+                name: "scr_home"
+                id: scr_home
+            SettingsScreen:
+                name: "scr_settings"
+                id: scr_settings
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: '8dp'
+            padding: '8dp'
+
+            Image:
+                source: 'resources/imgs/avatar_girl002.jpg'
+
+            MDLabel:
+                id: navsidebar_user_name
+                font_style: 'Subtitle1'
+                size_hint_y: None
+                height: self.texture_size[1]
+                halign: 'center'
+            MDLabel:
+                id: navsidebar_user_email 
+                font_style: 'Subtitle1'
+                size_hint_y: None
+                height: self.texture_size[1]
+                halign: 'center'
+            ScrollView:
+                MDList:
+#-----insert screen NAME here, refer screen name from SCREEN MANAGER
+                    OneLineIconListItem:
+                        text: 'Login'
+                        on_release: 
+                            screen_manager.current = "scr_login"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: 'alien'
+                    OneLineIconListItem:
+                        text: 'Home'
+                        on_release: 
+                            screen_manager.current = "scr_home"
+                            nav_drawer.set_state("close")
+                        IconLeftWidget:
+                            icon: 'domino-mask'
