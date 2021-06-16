@@ -1,0 +1,16 @@
+#:import utils kivy.utils
+##:include homemapview.kv
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        MDToolbar:
+            title: "Home"
+            left_action_items:[['menu', lambda x: app.opensidebarmenu("open")]]
+            right_action_items:[['dots-vertical',lambda x: app.leftmenucallback(x)]]
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 20
+            MDLabel:
+                text:"MAIN SCREEN by irfan"
+                halign: 'center'

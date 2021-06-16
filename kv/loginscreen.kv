@@ -1,0 +1,75 @@
+<LoginScreen>:
+    #name: "scr_login"
+    #md_bg_color: []
+    MDCard:
+        size_hint: .75,.75
+        border_radius: 20
+        radius: [15]
+        pos_hint: {"center_x":.5,"center_y":.5}
+        elevation: 95
+    #-----refer rgb calculator from: https://www.w3schools.com/colors/colors_rgb.asp and divide by 255, last value is alpha channel/opacity, default: 1 
+        #md_bg_color: [35/255,49/255,48/255,1]
+        padding: 20
+        spacing: 30
+        orientation: "vertical"
+
+        #adding items to the card
+        MDLabel:
+            text:"LOGIN"
+            font_style: 'Button'
+            font_size: 45
+            halign: "center"
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+        MDTextFieldRound:
+            id:txt_username
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            width: 220
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            color_active:[1,1,1,1]
+        #do this to enable tab keyboard button to cycle through text inputs...    
+            write_tab: False
+            multiline: False
+            #on_text_validate: root.foo()
+        #
+        MDTextFieldRound:
+            id:txt_userpswd
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 220
+            font_size: 20
+            pos_hint: {"center_x":.5}
+            password: True
+            color_active:[1,1,1,1]
+        #do this to enable tab keyboard button to cycle through text inputs...      
+            write_tab: False
+            multiline: False
+            #on_text_validate: root.foo()
+        #
+        MDRoundFlatButton:
+            id: btn_login
+            text: 'LOGIN'
+            font_size: 15
+            pos_hint: {"center_x":.5}
+            on_release:
+                app.chk_user(txt_username.text, txt_userpswd.text)
+                
+        MDTextButton:
+            text: 'Sign-Up New User'
+            font_size: 15
+            pos_hint: {"center_x":.5}
+            on_release: app.change_screen("scr_register", direction='right', mode='push')
+        MDLabel:
+            id: txt_login_info
+            pos_hint: {"center_x":.5}
+            size_hint_y: None
+            height: 10
+            halign: 'center'
+            text:""
+            text_color: [1,0,0,1]
+            markup: True
